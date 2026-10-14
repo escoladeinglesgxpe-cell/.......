@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App CAIXA - Extrato</title>
+    <style>
+        /* Configurações Globais para Celular */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333333;
+            padding-bottom: 30px;
+        }
+        
+        /* Barra Superior do App (Navbar) */
+        .app-header {
+            background-color: #005c99; /* Azul Caixa */
+            color: #ffffff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn-voltar {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .app-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .logo-caixa {
+            font-weight: 900;
+            font-style: italic;
+            font-size: 18px;
+        }
+        .logo-caixa span {
+            color: #f26522; /* Laranja Caixa */
+        }
+
+        /* Resumo da Conta e Saldo */
+        .conta-card {
+            background-color: #ffffff;
+            margin: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .conta-info {
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 8px;
+        }
+        .saldo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 8px;
+        }
+        .saldo-label {
+            font-size: 14px;
+            color: #444444;
+        }
+        .saldo-valor {
+            font-size: 18px;
+            font-weight: bold;
+            color: #005c99;
+        }
+
+        /* Linha divisória de data (Agrupamento por dia) */
+        .data-grupo {
+            font-size: 12px;
+            font-weight: bold;
+            color: #666666;
+            margin: 15px 12px 5px 15px;
+            text-transform: uppercase;
+        }
+
+        /* Lista de Transações (Estilo Feed de App) */
+        .transacoes-lista {
+            background-color: #ffffff;
+            margin: 0 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .transacao-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .transacao-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Detalhes da transação (Esquerda) */
+        .transacao-detalhe {
+            display: flex;
+            flex-direction: column;
+        }
+        .transacao-titulo {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 2px;
+        }
+        .transacao-sub {
+            font-size: 11px;
+            color: #999999;
+        }
+
+        /* Valores (Direita) */
+        .transacao-valor {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: right;
+        }
+        .credito {
+            color: #2b7d2b;
+        }
+        .debito {
+            color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topo do Aplicativo -->
+    <div class="app-header">
+        <span class="btn-voltar">❮</span>
+        <div class="app-title">Extrato da Conta</div>
+        <div class="logo-caixa">CAIXA<span>X</span></div>
+    </div>
+
+    <!-- Informações e Saldo Atual -->
+    <div class="conta-card">
+        <div class="conta-info">
+            <strong>JOAO DA SILVA SA</strong><br>
+            Agência: 0001 | Conta: 013 / 00084712-4
+        </div>
+        <div class="saldo-container">
+            <span class="saldo-label">Saldo disponível:</span>
+            <span class="saldo-valor">R$ 1.669,60</span>
+        </div>
+    </div>
+
+    <!-- Grupo: Hoje -->
+    <div class="data-grupo">Hoje - 14 Out 2026</div>
+    <div class="transacoes-lista">
+        <div class="transacao-item">
+            <div class="transacao-detalhe">
+                <span class="transacao-titulo">CRED PIX</span>
+                <span class="transacao-sub">Doc 254109 • 10:14</span>
+            </div>
+            <div class="transacao-valor credito">
+                + R$ 450,00
+            </div>
+        </div>
+        <div class="transacao-item">
+            <div class="transacao-detalhe">
+                <span class="transacao-titulo">DEB.AUTOR.</span>
+                <span class="transacao-sub">Doc 000000 • 08:30</span>
+            </div>
+            <div class="transacao-valor debito">
+                - R$ 89,90
+            </div>
+        </div>
+    </div>
+
+    <!-- Grupo: Ontem -->
+    <div class="data-grupo">Ontem - 13 Out 2026</div>
+    <div class="transacoes-lista">
+        <div class="transacao-item">
+            <div class="transacao-detalhe">
+                <span class="transacao-titulo">PIX ENVIADO</span>
+                <span class="transacao-sub">Doc 845213 • 15:45</span>
+            </div>
+            <div class="transacao-valor debito">
+                - R$ 230,00
+            </div>
+        </div>
+    </div>
+
+    <!-- Grupo: Dias Anteriores -->
+    <div class="data-grupo">05 Out 2026</div>
+    <div class="transacoes-lista">
+        <div class="transacao-item">
+            <div class="transacao-detalhe">
+                <span class="transacao-titulo">TAR BUSCA E</span>
+                <span class="transacao-sub">Doc 000104 • 23:59</span>
+            </div>
+            <div class="transacao-valor debito">
+                - R$ 10,50
+            </div>
+        </div>
+        <div class="transacao-item">
+            <div class="transacao-detalhe">
+                <span class="transacao-titulo">DP DINH AG</span>
+                <span class="transacao-sub">Doc 102456 • 11:20</span>
+            </div>
+            <div class="transacao-valor credito">
+                + R$ 500,00
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
